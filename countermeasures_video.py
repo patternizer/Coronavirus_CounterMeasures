@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------
 # PROGRAM: countermeasures_video.py
 #-----------------------------------------------------------------------
-# Version 0.1
-# 19 April, 2020
+# Version 0.2
+# 31 July, 2020
 # Dr Michael Taylor
 # https://patternizer.github.io
 # patternizer AT gmail DOT com
@@ -99,7 +99,7 @@ world = [i for i in range(len(country_id)) if id_length[i] > 2]
    
 # Set date
 """ 
-Data is available from 2020-01-23 to date 
+Data is available from 2020-01-23 to 2020-07-30 
 """
 headers = df.columns
 for i in range(len(headers)-1):
@@ -111,7 +111,9 @@ for i in range(len(headers)-1):
 
 timenow = pd.Timestamp.now().to_pydatetime()
 timestr = timenow.strftime('%Y-%m-%d')
-date = str(timenow.year) + '-' + str("{:02}".format(timenow.month)) + '-' + str("{:02}".format(timenow.day))
+# date = str(timenow.year) + '-' + str("{:02}".format(timenow.month)) + '-' + str("{:02}".format(timenow.day))
+# Last entry to database: 2020-07-39' --> need to override timenow()
+date = '2020-07-30'
 country_status = df[date]
 datelist = df.columns[df.columns<=date]
 opts = [{'label' : i, 'value' : i} for i in datelist]
@@ -197,7 +199,7 @@ for j in range(len(projections)):
 
     img, *imgs = [Image.open(f) for f in sorted(glob.glob(fp_in))]
     img.save(fp=fp_out, format='GIF', append_images=imgs,
-         save_all=True, duration=1000, loop=0)
+         save_all=True, duration=200, loop=0)
 
 #-----------------------------------------------------------------------------------------------
 
