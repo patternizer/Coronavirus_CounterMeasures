@@ -3,8 +3,8 @@
 #-----------------------------------------------------------------------
 # PROGRAM: countermeasures_app.py
 #-----------------------------------------------------------------------
-# Version 0.7
-# 13 May, 2020
+# Version 0.8
+# 31 July, 2020
 # Dr Michael Taylor
 # https://patternizer.github.io
 # patternizer AT gmail DOT com
@@ -86,7 +86,7 @@ world = [i for i in range(len(country_id)) if id_length[i] > 2]
    
 # Set date
 """ 
-Data is available from 2020-01-23 to date 
+Data is available from 2020-01-23 to 2020-07-30
 """
 headers = df.columns
 for i in range(len(headers)-1):
@@ -99,6 +99,8 @@ for i in range(len(headers)-1):
 timenow = pd.Timestamp.now().to_pydatetime()
 timestr = timenow.strftime('%Y-%m-%d')
 date = str(timenow.year) + '-' + str("{:02}".format(timenow.month)) + '-' + str("{:02}".format(timenow.day))
+# Latest entry: 2020-07-31 --> nned to override timenow()
+date = '2020-07-30'
 country_status = df[date]
 datelist = df.columns[df.columns<=date]
 opts = [{'label' : i, 'value' : i} for i in datelist]
